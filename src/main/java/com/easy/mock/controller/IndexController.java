@@ -10,6 +10,6 @@ public class IndexController {
 
     @GetMapping("/create-mock")
     public String home(Model model) {
-        return "/index";
+        return "index";
     }
 }

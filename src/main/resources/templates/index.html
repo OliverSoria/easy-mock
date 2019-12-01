@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <title>Easy-Mock</title>
     <link rel="shortcut icon" type="image/png" th:href="@{/favicon.png}"/>
@@ -64,10 +64,12 @@
 <div id="modal1" class="modal">
     <div class="modal-content">
         <h4>Java implementation example</h4>
-        <p>RestTemplate restTemplate = new RestTemplate();</p>
-        <p>ResponseEntity&lt;GenericResult&gt; responseTrackService =
+        <p>// TODO delete after testing<br>
+            RestTemplate restTemplate = new RestTemplate();<br>
+            ResponseEntity&lt;GenericResult&gt; responseTrackService =
             restTemplate.exchange("http://localhost:8888/easy-mock/get-json", HttpMethod.GET, null,
             GenericResult.class);</p>
+         <p>To stop Easy Mock run this command: sudo fuser -k 8888/tcp</p>
     </div>
     <div class="modal-footer">
         <a id="close_btn" class="modal-close waves-effect waves-green btn-flat">Close</a>
