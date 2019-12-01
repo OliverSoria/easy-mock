@@ -1,7 +1,8 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title id="tituloPagina">Easy-Mock</title>
+    <title>Easy-Mock</title>
+    <link rel="shortcut icon" type="image/png" th:href="@{/favicon.png}"/>
     <link rel="stylesheet" th:href="@{/webjars/materializecss/1.0.0/css/materialize.css}" type="text/css"/>
     <script type="text/javascript" th:src="@{/webjars/materializecss/1.0.0/js/materialize.js}"></script>
     <script type="text/javascript" th:src="@{/webjars/jquery/3.4.1/jquery.js}"></script>
@@ -14,34 +15,38 @@
     <div class="col s12 m12 l12">
         <button class="btn waves-effect waves-light red" id="clear">Clear</button>
         <button class="btn waves-effect waves-light" id="produce">Post</button>
+        <a class="btn-floating btn-medium waves-effect waves-light blue modal-trigger"
+           id="modal-btn" style="float: right;"><i class="material-icons">?</i></a>
+    </div>
+    <div class="col s12 m6 l6">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col s12 m12 l12">
+        <p>Ignore:</p>
         <p>
-            <label>
+            <label class="right-padding">
                 <input id="slash" type="checkbox"/>
                 <span>\</span>
             </label>
-        </p>
-        <p>
-            <label>
+            <label class="right-padding">
                 <input id="new_line" type="checkbox"/>
                 <span>\n</span>
             </label>
-        </p>
-        <p>
-            <label>
+            <label class="right-padding">
                 <input id="open_bracket" type="checkbox"/>
                 <span>"{</span>
             </label>
-        </p>
-        <p>
-            <label>
+            <label class="right-padding">
                 <input id="close_bracket" type="checkbox"/>
                 <span>}"</span>
             </label>
         </p>
     </div>
-    <div class="col s12 m6 l6">
-    </div>
 </div>
+
+
 <div class="row">
     <div id="message" class="col s12 m12 l12"></div>
 </div>
@@ -59,5 +64,18 @@
         </div>
     </form>
 </div>
+
+
+<div id="modal1" class="modal">
+    <div class="modal-content">
+        <h4>Java implementation example</h4>
+        <p>RestTemplate restTemplate = new RestTemplate();</p>
+        <p>ResponseEntity&lt;GenericResult&gt; responseTrackService = restTemplate.exchange("http://localhost:8888/easy-mock/get-json", HttpMethod.GET, null, GenericResult.class);</p>
+    </div>
+    <div class="modal-footer">
+        <a id="close_btn" class="modal-close waves-effect waves-green btn-flat">Close</a>
+    </div>
+</div>
+
 </body>
 </html>

@@ -2,6 +2,8 @@ $(document).ready(function (e) {
     $('#input_text').focus();
     produce();
     clear();
+    showModal();
+    hideModal();
 });
 
 function produce() {
@@ -38,7 +40,7 @@ function produce() {
                 data: JSON.stringify(Model),
                 contentType: "application/json",
                 success: function (response) {
-                    $('#message').html('<h4 class="success">Success! <a target="_blank" href="http://localhost:8888/easy-mock/get-json">Click here</a></h4>')
+                    $('#message').html('<h4 class="success">Success - <a target="_blank" href="http://localhost:8888/easy-mock/get-json">Click here!</a></h4>')
                 }
             })
         } catch (e) {
@@ -61,4 +63,16 @@ function clear() {
 
 function resize() {
     M.textareaAutoResize($('#input_text'));
+}
+
+function showModal() {
+    $('#modal-btn').click(function () {
+        $('#modal1').toggle();
+    });
+}
+
+function hideModal() {
+    $('#close_btn').click(function () {
+        $('#modal1').toggle();
+    });
 }

@@ -4,6 +4,10 @@ h1 {
     text-align: center;
 }
 
+.right-padding {
+    margin-right: 3em;
+}
+
 .error {
     font-weight: 500;
     color: red;
