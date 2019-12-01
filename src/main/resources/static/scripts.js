@@ -1,21 +1,18 @@
-var newString;
-
 $(document).ready(function (e) {
     $('#input_text').focus();
-    preview();
     produce();
     clear();
 });
 
-function preview() {
-    $('#preview').click(function () {
-        $('#message').text("");
+function produce() {
+    $("#produce").click(function () {
+
+        $('#message').html('');
 
         $('#output_text').val('');
         M.textareaAutoResize($('#output_text'));
 
         var input = $('#input_text').val();
-
 
         if ($('#new_line').is(":checked")) input = input.replace(/[\n\r]/g, '');
         if ($('#slash').is(":checked")) input = input.replace(/\\/g, '');
@@ -24,42 +21,44 @@ function preview() {
 
         try {
             var jsonObject = JSON.parse(input);
-            newString = JSON.stringify(jsonObject, null, 4);
+            var newString = JSON.stringify(jsonObject, null, 4);
 
             $('#output_text').focus();
             $('#output_text').val(newString);
             M.textareaAutoResize($('#output_text'));
+
+            var Model = new Object();
+            Model.value = newString;
+
+            console.log(Model);
+
+            $.ajax({
+                url: "/easy-mock/receive-json",
+                type: "POST",
+                data: JSON.stringify(Model),
+                contentType: "application/json",
+                success: function (response) {
+                    $('#message').html('<h4 class="success">Success! <a target="_blank" href="http://localhost:8888/easy-mock/get-json">Click here</a></h4>')
+                }
+            })
         } catch (e) {
-            $('#message').text("Invalid json input!");
+            $('#message').html('<h4 class="error">Invalid json input!</h4>');
         }
     });
 }
 
-function produce() {
-
-
-    $("#produce").click(function () {
-        var Model = new Object();
-        Model.value = newString;
-
-        console.log(Model);
-
-        $.ajax({
-            url:"/easy-mock/receive-json",
-            type:"POST",
-            data: JSON.stringify(Model),
-            contentType: "application/json",
-            success: function(response){
-               // $("#testdata").html(response);
-            }
-        })
-    });
-
-
-}
-
 function clear() {
     $('#clear').click(function () {
-        location.reload(true);
+        $.ajax({
+            url: "/easy-mock/clear",
+            type: "POST",
+            success: function (response) {
+                location.reload(true);
+            }
+        });
     });
+}
+
+function resize() {
+    M.textareaAutoResize($('#input_text'));
 }

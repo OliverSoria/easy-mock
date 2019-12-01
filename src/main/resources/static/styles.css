@@ -4,7 +4,12 @@ h1 {
     text-align: center;
 }
 
-h4 {
+.error {
     font-weight: 500;
     color: red;
+}
+
+.success {
+    font-weight: 500;
+    color: forestgreen;
 }
